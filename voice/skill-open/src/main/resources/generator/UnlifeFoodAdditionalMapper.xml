@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fridge.skl.dto.UnlifeFoodAdditionalMapper">
+  <resultMap id="BaseResultMap" type="com.fridge.skl.entity.UnlifeFoodAdditional">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="foodid" jdbcType="INTEGER" property="foodid" />
+    <result column="key" jdbcType="VARCHAR" property="key" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, foodid, `key`, `value`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from unlife_food_additional
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from unlife_food_additional
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fridge.skl.entity.UnlifeFoodAdditional" useGeneratedKeys="true">
+    insert into unlife_food_additional (foodid, `key`, `value`
+      )
+    values (#{foodid,jdbcType=INTEGER}, #{key,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.fridge.skl.entity.UnlifeFoodAdditional" useGeneratedKeys="true">
+    insert into unlife_food_additional
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="foodid != null">
+        foodid,
+      </if>
+      <if test="key != null">
+        `key`,
+      </if>
+      <if test="value != null">
+        `value`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="foodid != null">
+        #{foodid,jdbcType=INTEGER},
+      </if>
+      <if test="key != null">
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fridge.skl.entity.UnlifeFoodAdditional">
+    update unlife_food_additional
+    <set>
+      <if test="foodid != null">
+        foodid = #{foodid,jdbcType=INTEGER},
+      </if>
+      <if test="key != null">
+        `key` = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        `value` = #{value,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fridge.skl.entity.UnlifeFoodAdditional">
+    update unlife_food_additional
+    set foodid = #{foodid,jdbcType=INTEGER},
+      `key` = #{key,jdbcType=VARCHAR},
+      `value` = #{value,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertOrUpdate" parameterType="com.fridge.skl.entity.UnlifeFoodAdditional" >
+  insert into unlife_food_additional (foodid, `key`, `value`
+      )
+    values (#{foodid,jdbcType=INTEGER}, #{key,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}
+      )
+    ON DUPLICATE KEY UPDATE
+     foodid = #{foodid,jdbcType=INTEGER},
+      `key` = #{key,jdbcType=VARCHAR},
+      `value` = #{value,jdbcType=VARCHAR}
+  </insert>
+
+
+
+</mapper>

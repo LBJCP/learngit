@@ -1,0 +1,65 @@
+server:
+  port: 12000
+
+#正式服务器
+spring:
+  datasource:
+    username: root
+    password: 1qaz!QAZ
+    url: jdbc:mysql://140.143.28.160:12306/aivoice?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+
+#    #正式服务器
+#    spring:
+#      datasource:
+#        username: root
+#        password: 1qaz!QAZ
+#        url: jdbc:mysql://188.131.194.12:12306/aivoice?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+#        driver-class-name: com.mysql.jdbc.Driver
+#
+
+#    本地
+#spring:
+#  datasource:
+#    username: root
+#    password: 123456
+#    url: jdbc:mysql://localhost:3306/aivocie_loc?useUnicode=true&characterEncoding=utf-8&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false
+#    driver-class-name: com.mysql.jdbc.Driver
+    #Redis
+#  redis:
+#    host: 127.0.0.1
+#    database: 0
+#    port: 6379
+#    password:
+#    jedis:
+#      pool:
+#        max-active: 8
+#        max-wait: -1
+#        max-idle: 8
+#        min-idle: 0
+#    timeout: 1000
+  redis:
+    host: 140.143.28.160
+    database: 0
+    port: 11000
+    password: Haier123qwe
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+    timeout: 1000
+
+
+mybatis:
+  mapper-locations: classpath:generator/*.xml
+  type-aliases-package: com.fridge.skl.entity
+logging:
+  level:
+    com:
+      fridge:
+        skl:
+          dto: debug
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

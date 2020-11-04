@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fridge.skl.dto.FoodLocationMapper">
+  <resultMap id="BaseResultMap" type="com.fridge.skl.entity.FoodLocation">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="foodname" jdbcType="VARCHAR" property="foodname" />
+    <result column="foodid" jdbcType="INTEGER" property="foodid" />
+    <result column="devicetype" jdbcType="VARCHAR" property="devicetype" />
+    <result column="locationid" jdbcType="INTEGER" property="locationid" />
+    <result column="loacationname" jdbcType="VARCHAR" property="loacationname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, foodname, foodid, devicetype, locationid, loacationname
+  </sql>
+  <select id="selectFoodlocation"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from food_location
+    where foodname = #{foodname,jdbcType=INTEGER}
+    and devicetype= #{devicetype,jdbcType=INTEGER}
+  </select>
+
+</mapper>

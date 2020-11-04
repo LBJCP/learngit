@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fridge.skl.dto.RequestlogMapper">
+  <resultMap id="BaseResultMap" type="com.fridge.skl.entity.Requestlog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sn" jdbcType="VARCHAR" property="sn" />
+    <result column="userId" jdbcType="VARCHAR" property="userid" />
+    <result column="local" jdbcType="VARCHAR" property="local" />
+    <result column="deviceId" jdbcType="VARCHAR" property="deviceid" />
+    <result column="devicetype" jdbcType="VARCHAR" property="devicetype" />
+    <result column="accessToken" jdbcType="VARCHAR" property="accesstoken" />
+    <result column="clientId" jdbcType="VARCHAR" property="clientid" />
+    <result column="timestamp" jdbcType="VARCHAR" property="timestamp" />
+    <result column="sessionid" jdbcType="VARCHAR" property="sessionid" />
+    <result column="taskId" jdbcType="VARCHAR" property="taskid" />
+    <result column="taskName" jdbcType="VARCHAR" property="taskname" />
+    <result column="intentId" jdbcType="VARCHAR" property="intentid" />
+    <result column="intentName" jdbcType="VARCHAR" property="intentname" />
+    <result column="intentCode" jdbcType="VARCHAR" property="intentcode" />
+    <result column="slots" jdbcType="VARCHAR" property="slots" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="response" jdbcType="VARCHAR" property="response" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sn, userId, `local`, deviceId, devicetype, accessToken, clientId, `timestamp`, 
+    sessionid, taskId, taskName, intentId, intentName, intentCode, slots, content, response
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from requestlog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from requestlog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.fridge.skl.entity.Requestlog" useGeneratedKeys="true">
+    insert into requestlog (sn, userId, `local`, 
+      deviceId, devicetype, accessToken, 
+      clientId, `timestamp`, sessionid, 
+      taskId, taskName, intentId, 
+      intentName, intentCode, slots, 
+      content, response)
+    values (#{sn,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{local,jdbcType=VARCHAR}, 
+      #{deviceid,jdbcType=VARCHAR}, #{devicetype,jdbcType=VARCHAR}, #{accesstoken,jdbcType=VARCHAR}, 
+      #{clientid,jdbcType=VARCHAR}, #{timestamp,jdbcType=VARCHAR}, #{sessionid,jdbcType=VARCHAR}, 
+      #{taskid,jdbcType=VARCHAR}, #{taskname,jdbcType=VARCHAR}, #{intentid,jdbcType=VARCHAR}, 
+      #{intentname,jdbcType=VARCHAR}, #{intentcode,jdbcType=VARCHAR}, #{slots,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{response,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.fridge.skl.entity.Requestlog" useGeneratedKeys="true">
+    insert into requestlog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sn != null">
+        sn,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="local != null">
+        `local`,
+      </if>
+      <if test="deviceid != null">
+        deviceId,
+      </if>
+      <if test="devicetype != null">
+        devicetype,
+      </if>
+      <if test="accesstoken != null">
+        accessToken,
+      </if>
+      <if test="clientid != null">
+        clientId,
+      </if>
+      <if test="timestamp != null">
+        `timestamp`,
+      </if>
+      <if test="sessionid != null">
+        sessionid,
+      </if>
+      <if test="taskid != null">
+        taskId,
+      </if>
+      <if test="taskname != null">
+        taskName,
+      </if>
+      <if test="intentid != null">
+        intentId,
+      </if>
+      <if test="intentname != null">
+        intentName,
+      </if>
+      <if test="intentcode != null">
+        intentCode,
+      </if>
+      <if test="slots != null">
+        slots,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="response != null">
+        response,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sn != null">
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="local != null">
+        #{local,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null">
+        #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null">
+        #{devicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="accesstoken != null">
+        #{accesstoken,jdbcType=VARCHAR},
+      </if>
+      <if test="clientid != null">
+        #{clientid,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionid != null">
+        #{sessionid,jdbcType=VARCHAR},
+      </if>
+      <if test="taskid != null">
+        #{taskid,jdbcType=VARCHAR},
+      </if>
+      <if test="taskname != null">
+        #{taskname,jdbcType=VARCHAR},
+      </if>
+      <if test="intentid != null">
+        #{intentid,jdbcType=VARCHAR},
+      </if>
+      <if test="intentname != null">
+        #{intentname,jdbcType=VARCHAR},
+      </if>
+      <if test="intentcode != null">
+        #{intentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="slots != null">
+        #{slots,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="response != null">
+        #{response,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fridge.skl.entity.Requestlog">
+    update requestlog
+    <set>
+      <if test="sn != null">
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="local != null">
+        `local` = #{local,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null">
+        deviceId = #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null">
+        devicetype = #{devicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="accesstoken != null">
+        accessToken = #{accesstoken,jdbcType=VARCHAR},
+      </if>
+      <if test="clientid != null">
+        clientId = #{clientid,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null">
+        `timestamp` = #{timestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionid != null">
+        sessionid = #{sessionid,jdbcType=VARCHAR},
+      </if>
+      <if test="taskid != null">
+        taskId = #{taskid,jdbcType=VARCHAR},
+      </if>
+      <if test="taskname != null">
+        taskName = #{taskname,jdbcType=VARCHAR},
+      </if>
+      <if test="intentid != null">
+        intentId = #{intentid,jdbcType=VARCHAR},
+      </if>
+      <if test="intentname != null">
+        intentName = #{intentname,jdbcType=VARCHAR},
+      </if>
+      <if test="intentcode != null">
+        intentCode = #{intentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="slots != null">
+        slots = #{slots,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="response != null">
+        response = #{response,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fridge.skl.entity.Requestlog">
+    update requestlog
+    set sn = #{sn,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=VARCHAR},
+      `local` = #{local,jdbcType=VARCHAR},
+      deviceId = #{deviceid,jdbcType=VARCHAR},
+      devicetype = #{devicetype,jdbcType=VARCHAR},
+      accessToken = #{accesstoken,jdbcType=VARCHAR},
+      clientId = #{clientid,jdbcType=VARCHAR},
+      `timestamp` = #{timestamp,jdbcType=VARCHAR},
+      sessionid = #{sessionid,jdbcType=VARCHAR},
+      taskId = #{taskid,jdbcType=VARCHAR},
+      taskName = #{taskname,jdbcType=VARCHAR},
+      intentId = #{intentid,jdbcType=VARCHAR},
+      intentName = #{intentname,jdbcType=VARCHAR},
+      intentCode = #{intentcode,jdbcType=VARCHAR},
+      slots = #{slots,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      response = #{response,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

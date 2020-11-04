@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                %date{yyyy-MM-dd HH:mm:ss.SSS} %-5level[%thread]%logger{56}.%method:%L -%msg%n
+            </pattern>
+        </layout>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/skill-open.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder>
+            <pattern>
+                %date{yyyy-MM-dd HH:mm:ss.SSS} %-5level[%thread]%logger{56}.%method:%L -%msg%n
+            </pattern>
+        </encoder>
+
+        <!-- 设置滚动策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 路径 -->
+            <fileNamePattern>./logs/skill-open.%d.log</fileNamePattern>
+            <!-- 控制保留的归档文件的最大数量，超出数量就删除旧文件，假设设置每天滚动，
+            <maxHistory> 是7，则只保存最近7天的文件，删除之前的旧文件 -->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--异常日志-->
+    <appender name="errorFile"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>logs/error/errorFile.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>log/error/errorFile.%d.log.%i</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 64 MB -->
+                <maxFileSize>64 MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <!--对记录事件进行格式化。负责两件事，一是把日志信息转换成字节数组，二是把字节数组写入到输出流。-->
+        <encoder>
+            <!--用来设置日志的输入格式-->
+            <pattern>
+                %d %p (%file:%line\)- %m%n
+            </pattern>
+            <charset>UTF-8</charset>
+            <!-- 此处设置字符集 -->
+        </encoder>
+        <!--
+            日志都在这里 过滤出 error
+            使用 try {}catch (Exception e){} 的话异常无法写入日志，可以在catch里用logger.error()方法手动写入日志
+            -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+
+    <logger name="com.fridge" level="INFO" additivity="false">
+        <appender-ref ref="file"/>
+        <appender-ref ref="console"/>
+        <appender-ref ref="errorFile"/>
+    </logger>
+
+    <!--注意这个节点要写在最后 -->
+    <root level="INFO">
+        <appender-ref ref="console"/>
+        <appender-ref ref="errorFile"/>
+    </root>
+</configuration>
